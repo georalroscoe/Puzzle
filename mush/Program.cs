@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Xml.Linq;
 
 class Program
 {
     static void Main(string[] args)
     {
-        Node root = GenerateTreeWithValues(5);
+        Node root = GenerateTreeWithValues(6);
         PrintTree(root, 0);
     }
 
@@ -42,54 +43,123 @@ class Program
         int? parentValue = node.Parent?.Value.Item1;
         if (value == 0)
         {
-            node.AddChild(new Node(new Tuple<int, string>(3, "down")));
-            node.AddChild(new Node(new Tuple<int, string>(1, "left")));
+            if (parentValue != 4)
+            {
+                node.AddChild(new Node(new Tuple<int, string>(3, "down")));
+            }
+            if (parentValue != 1)
+            {
+                node.AddChild(new Node(new Tuple<int, string>(1, "left")));
+            }
         }
         else if (value == 1)
         {
-            node.AddChild(new Node(new Tuple<int, string>(0, "left")));
-            node.AddChild(new Node(new Tuple<int, string>(2, "right")));
-            node.AddChild(new Node(new Tuple<int, string>(4, "down")));
+            if (parentValue != 0)
+            {
+                node.AddChild(new Node(new Tuple<int, string>(0, "left")));
+            }
+            if (parentValue != 2)
+            {
+                node.AddChild(new Node(new Tuple<int, string>(2, "right")));
+            }
+            if (parentValue != 4)
+            {
+                node.AddChild(new Node(new Tuple<int, string>(4, "down")));
+            }
         }
         else if (value == 2)
         {
-            node.AddChild(new Node(new Tuple<int, string>(1, "left")));
-            node.AddChild(new Node(new Tuple<int, string>(5, "down")));
+            if (parentValue != 1)
+            {
+                node.AddChild(new Node(new Tuple<int, string>(1, "left")));
+            }
+            if (parentValue != 5)
+            {
+                node.AddChild(new Node(new Tuple<int, string>(5, "down")));
+            }
         }
         else if (value == 3)
         {
-            node.AddChild(new Node(new Tuple<int, string>(0, "up")));
-            node.AddChild(new Node(new Tuple<int, string>(4, "left")));
+            if (parentValue != 0)
+            {
+                node.AddChild(new Node(new Tuple<int, string>(0, "up")));
+            }
+            if (parentValue != 4)
+            {
+                node.AddChild(new Node(new Tuple<int, string>(4, "left")));
+            }
         }
         else if (value == 4)
         {
-            node.AddChild(new Node(new Tuple<int, string>(3, "left")));
-            node.AddChild(new Node(new Tuple<int, string>(5, "right")));
-            node.AddChild(new Node(new Tuple<int, string>(7, "down")));
-            node.AddChild(new Node(new Tuple<int, string>(1, "up")));
+            if (parentValue != 3)
+            {
+                node.AddChild(new Node(new Tuple<int, string>(3, "left")));
+            }
+            if (parentValue != 5)
+            {
+                node.AddChild(new Node(new Tuple<int, string>(5, "right")));
+            }
+            if (parentValue != 7)
+            {
+                node.AddChild(new Node(new Tuple<int, string>(7, "down")));
+            }
+            if (parentValue != 1)
+            {
+                node.AddChild(new Node(new Tuple<int, string>(1, "up")));
+            }
         }
         else if (value == 5)
         {
-            node.AddChild(new Node(new Tuple<int, string>(4, "left")));
-            node.AddChild(new Node(new Tuple<int, string>(2, "up")));
-            node.AddChild(new Node(new Tuple<int, string>(8, "down")));
+            if (parentValue != 4)
+            {
+                node.AddChild(new Node(new Tuple<int, string>(4, "left")));
+            }
+            if (parentValue != 2)
+            {
+                node.AddChild(new Node(new Tuple<int, string>(2, "up")));
+            }
+            if (parentValue != 8)
+            {
+                node.AddChild(new Node(new Tuple<int, string>(8, "down")));
+            }
         }
         else if (value == 6)
         {
-            node.AddChild(new Node(new Tuple<int, string>(3, "up")));
-            node.AddChild(new Node(new Tuple<int, string>(7, "right")));
+            if (parentValue != 3)
+            {
+                node.AddChild(new Node(new Tuple<int, string>(3, "up")));
+            }
+            if (parentValue != 7)
+            {
+                node.AddChild(new Node(new Tuple<int, string>(7, "right")));
+            }
         }
         else if (value == 7)
         {
-            node.AddChild(new Node(new Tuple<int, string>(6, "left")));
-            node.AddChild(new Node(new Tuple<int, string>(8, "right")));
+            if (parentValue != 6)
+            {
+                node.AddChild(new Node(new Tuple<int, string>(6, "down")));
+}
+        if (parentValue != 4)
+        {
             node.AddChild(new Node(new Tuple<int, string>(4, "up")));
         }
-        else if (value == 8)
+        if (parentValue != 8)
         {
-            node.AddChild(new Node(new Tuple<int, string>(7, "left")));
-            node.AddChild(new Node(new Tuple<int, string>(5, "up")));
+            node.AddChild(new Node(new Tuple<int, string>(8, "right")));
         }
+    }
+else if (value == 8)
+{
+if (parentValue != 5)
+{
+node.AddChild(new Node(new Tuple<int, string>(5, "up")));
+}
+if (parentValue != 7)
+{
+    node.AddChild(new Node(new Tuple<int, string>(7, "left")));
+}
+}
 
         foreach (Node child in node.Children)
         {
