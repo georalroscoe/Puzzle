@@ -5,12 +5,14 @@ using System.Collections.Generic;
 using System.Xml.Linq;
 using System.Linq;
 using System.Reflection.Metadata.Ecma335;
+using System.Reflection;
 
 class Program
 {
     static void Main(string[] args)
     {
-        Node root = GenerateTreeWithValues(15);
+        int[] array = { 0,1,3,5,4,2,6,7,8 };
+        GenerateTreeWithValues(15, array);
         Console.WriteLine("fff");
         /*PrintTree(root, 0);*/
         
@@ -218,22 +220,29 @@ class Program
     }
 
 
-    static Node GenerateTreeWithValues(int depth)
+    static Node GenerateTreeWithValues(int depth, int[] arr)
     {
-        int[] arr = { 0, 1, 2, 3, 4, 5, 6, 7, 8 };
-        Node root = new Node(new Tuple<int, string>(0, ""), arr);
+        int IndexOfZero = Array.IndexOf(arr, 0); 
+        Node root = new Node(new Tuple<int, string>(IndexOfZero, ""), arr);
         FillTreeValues(root, depth, arr);
         return root;
     }
 
     static void FillTreeValues(Node node, int depth, int[] array)
     {
+
+        
         if (depth == 0)
         {
 
             return;
         }
+
         
+
+        int[] result = { 0, 1, 2, 3, 4, 5, 6, 7, 8 };
+        
+
         int[] unchanged = new int[9];
         for (int i = 0;i < 9; i++)
         {
@@ -249,18 +258,7 @@ class Program
         {
             unchanged3[i] = array[i];
         }
-        int[] result = { 3, 1, 2, 0, 4, 5, 6, 7, 8};
-        bool istrue = Enumerable.SequenceEqual(array, result);
-        
        
-        if (istrue)
-        {
-            Console.WriteLine("sortred");
-           
-            node.IsSorted = true;
-            node.getPathway();
-            return;
-        }
 
 
         int value = node.Value.Item1;
@@ -401,25 +399,59 @@ class Program
             node.AddChild(new Node(new Tuple<int, string>(8, "right"), sortArray(unchanged2, 7, "right")));
             }
     }
-else if (value == 8)
-{
-if (parentValue != 5)
-{
-node.AddChild(new Node(new Tuple<int, string>(5, "up"), sortArray(array, 8, "up")));
+        else if (value == 8)
+            {
+            if (parentValue != 5)
+                {
+                node.AddChild(new Node(new Tuple<int, string>(5, "up"), sortArray(array, 8, "up")));
                 
-            }
-if (parentValue != 7)
+                }
+                if (parentValue != 7)
 {
-    node.AddChild(new Node(new Tuple<int, string>(7, "left"), sortArray(unchanged2, 8, "left")));
+                    node.AddChild(new Node(new Tuple<int, string>(7, "left"), sortArray(unchanged2, 8, "left")));
                 
-            }
+                }
 }
+        
 
-        foreach (Node child in node.Children)
+        bool istrue = Enumerable.SequenceEqual(node.ArrayState, result);
+
+        if (istrue)
         {
-            FillTreeValues(child, depth - 1, child.ArrayState);
+
+            Console.WriteLine("sortred");
+            node.Parent.getPathway();
+            foreach(Node child in node.Children)
+            {
+                child.IsSorted = true;
+            }
+            foreach(Node child in node.Parent.Children)
+            {
+                child.IsSorted = true;
+            }
+            depth = 0;
+            return;
+
         }
         
+            foreach (Node child in node.Children)
+            {
+
+                if (child.IsSorted == true)
+                {
+                    return;
+                }
+                else
+                {
+
+                    FillTreeValues(child, depth - 1, child.ArrayState);
+
+                }
+
+            }
+        
+       
+
     }
     
 }
@@ -458,6 +490,8 @@ class Node
     {
         List<int> pathway = new List<int>();
         Node currentNode = this;
+        this.IsSorted = true;
+        
 
         while (currentNode != null)
         {
@@ -476,6 +510,9 @@ class Node
             }
         }
         Console.WriteLine();
+
+        
+
     }
 
 
