@@ -12,8 +12,8 @@ class Program
 {
     static void Main(string[] args)
     {
-        int[] array = { 1,0,2,3,5,8,4,6,1 };
-        GenerateTreeWithValues(12, array);
+        int[] array = { 6,5,3,0,2,8,1,7,4 };
+        GenerateTreeWithValues(array);
         Console.WriteLine("fff");
         /*PrintTree(root, 0);*/
 
@@ -221,240 +221,17 @@ class Program
     }
 
 
-    static Node GenerateTreeWithValues(int depth, int[] arr)
+    static Node GenerateTreeWithValues(int[] arr)
     {
         int IndexOfZero = Array.IndexOf(arr, 0);
+        int[] result = { 0, 1, 2, 3, 4, 5, 6, 7, 8 };
         Queue<Node> nodeQueue = new Queue<Node>();
-        Node root = new Node(new Tuple<int, string>(IndexOfZero, ""), arr, depth);
-        FillTreeValues(root, depth, arr, nodeQueue);
+        Node root = new Node(new Tuple<int, string>(IndexOfZero, ""), arr);
+        FillTreeValues(root, arr, nodeQueue, result);
         return root;
     }
 
-    static void FillTreeValues(Node node, int depth, int[] array, Queue<Node> nodeQueue)
-    {
-
-
-        if (depth == 0)
-        {
-
-            return;
-        }
-
-
-
-        int[] result = { 0, 1, 2, 3, 4, 5, 6, 7, 8 };
-
-
-        int[] unchanged = new int[9];
-        for (int i = 0; i < 9; i++)
-        {
-            unchanged[i] = array[i];
-        }
-        int[] unchanged2 = new int[9];
-        for (int i = 0; i < 9; i++)
-        {
-            unchanged2[i] = array[i];
-        }
-        int[] unchanged3 = new int[9];
-        for (int i = 0; i < 9; i++)
-        {
-            unchanged3[i] = array[i];
-        }
-
-
-
-        int value = node.Value.Item1;
-        int? parentValue = node.Parent?.Value.Item1;
-
-        if (value == 0)
-        {
-
-            if (parentValue != 4)
-            {
-                node.AddChild(new Node(new Tuple<int, string>(3, "down"), sortArray(array, 0, "down"), depth));
-
-
-
-            }
-            if (parentValue != 1)
-            {
-                node.AddChild(new Node(new Tuple<int, string>(1, "right"), sortArray(unchanged, 0, "right"), depth));
-
-            }
-        }
-        else if (value == 1)
-        {
-            if (parentValue != 0)
-            {
-                node.AddChild(new Node(new Tuple<int, string>(0, "left"), sortArray(array, 1, "left"), depth));
-
-            }
-            if (parentValue != 2)
-            {
-                node.AddChild(new Node(new Tuple<int, string>(2, "right"), sortArray(unchanged, 1, "right"), depth));
-
-            }
-            if (parentValue != 4)
-            {
-                node.AddChild(new Node(new Tuple<int, string>(4, "down"), sortArray(unchanged2, 1, "down"), depth));
-
-            }
-        }
-        else if (value == 2)
-        {
-            if (parentValue != 1)
-            {
-                node.AddChild(new Node(new Tuple<int, string>(1, "left"), sortArray(array, 2, "left"), depth));
-
-            }
-            if (parentValue != 5)
-            {
-                node.AddChild(new Node(new Tuple<int, string>(5, "down"), sortArray(unchanged, 2, "down"), depth));
-
-            }
-        }
-        else if (value == 3)
-        {
-            if (parentValue != 0)
-            {
-                node.AddChild(new Node(new Tuple<int, string>(0, "up"), sortArray(array, 3, "up"), depth));
-
-            }
-            if (parentValue != 4)
-            {
-                node.AddChild(new Node(new Tuple<int, string>(4, "right"), sortArray(unchanged, 3, "right"), depth));
-
-            }
-            if (parentValue != 6)
-            {
-                node.AddChild(new Node(new Tuple<int, string>(6, "down"), sortArray(unchanged2, 3, "down"), depth));
-
-            }
-        }
-        else if (value == 4)
-        {
-            if (parentValue != 3)
-            {
-                node.AddChild(new Node(new Tuple<int, string>(3, "left"), sortArray(array, 4, "left"), depth));
-
-            }
-            if (parentValue != 5)
-            {
-                node.AddChild(new Node(new Tuple<int, string>(5, "right"), sortArray(unchanged, 4, "right"), depth));
-
-            }
-            if (parentValue != 7)
-            {
-                node.AddChild(new Node(new Tuple<int, string>(7, "down"), sortArray(unchanged2, 4, "down"), depth));
-
-            }
-            if (parentValue != 1)
-            {
-                node.AddChild(new Node(new Tuple<int, string>(1, "up"), sortArray(unchanged3, 4, "up"), depth));
-
-            }
-        }
-        else if (value == 5)
-        {
-            if (parentValue != 4)
-            {
-                node.AddChild(new Node(new Tuple<int, string>(4, "left"), sortArray(array, 5, "left"), depth));
-
-            }
-            if (parentValue != 2)
-            {
-                node.AddChild(new Node(new Tuple<int, string>(2, "up"), sortArray(unchanged, 5, "up"), depth));
-
-            }
-            if (parentValue != 8)
-            {
-                node.AddChild(new Node(new Tuple<int, string>(8, "down"), sortArray(unchanged2, 5, "down"), depth));
-
-            }
-        }
-        else if (value == 6)
-        {
-            if (parentValue != 3)
-            {
-                node.AddChild(new Node(new Tuple<int, string>(3, "up"), sortArray(array, 6, "up"), depth));
-
-            }
-            if (parentValue != 7)
-            {
-                node.AddChild(new Node(new Tuple<int, string>(7, "right"), sortArray(unchanged, 6, "right"), depth));
-
-            }
-        }
-        else if (value == 7)
-        {
-            if (parentValue != 6)
-            {
-                node.AddChild(new Node(new Tuple<int, string>(6, "left"), sortArray(array, 7, "left"), depth));
-
-            }
-            if (parentValue != 4)
-            {
-                node.AddChild(new Node(new Tuple<int, string>(4, "up"), sortArray(unchanged, 7, "up"), depth));
-            }
-            if (parentValue != 8)
-            {
-                node.AddChild(new Node(new Tuple<int, string>(8, "right"), sortArray(unchanged2, 7, "right"), depth));
-            }
-        }
-        else if (value == 8)
-        {
-            if (parentValue != 5)
-            {
-                node.AddChild(new Node(new Tuple<int, string>(5, "up"), sortArray(array, 8, "up"), depth));
-
-            }
-            if (parentValue != 7)
-            {
-                node.AddChild(new Node(new Tuple<int, string>(7, "left"), sortArray(unchanged2, 8, "left"), depth));
-
-            }
-        }
-
-       
-
-
-
-
-       
-
-
-
-        bool istrue = Enumerable.SequenceEqual(node.ArrayState, result);
-
-        if (istrue)
-        {
-
-            Console.WriteLine("sortred");
-            node.getPathway();
-           
-            return;
-
-
-        }
-
-         
-            foreach (Node child in node.Children)
-            {
-                nodeQueue.Enqueue(child);
-
-            }
-
-
-            Node nextNode = nodeQueue.Peek();
-        nodeQueue.Dequeue();
-        FillTreeValues(nextNode, nextNode.Depth - 1, nextNode.ArrayState, nodeQueue);
-            
-        
-
-
-
-    }
-
+    
     public static List<Node> GetAllNodes(Node root)
     {
         List<Node> nodes = new List<Node>();
