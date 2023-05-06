@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace NodeClass
 {
     class Node
@@ -66,24 +67,24 @@ namespace NodeClass
 
 
         }
-        public void FillTreeValues(int[] array, Queue<Node> nodeQueue, int[] result)
+        public void FillTreeValues(Queue<Node> nodeQueue, int[] result)
         {
 
 
             int[] unchanged = new int[9];
             for (int i = 0; i < 9; i++)
             {
-                unchanged[i] = array[i];
+                unchanged[i] = this.ArrayState[i];
             }
             int[] unchanged2 = new int[9];
             for (int i = 0; i < 9; i++)
             {
-                unchanged2[i] = array[i];
+                unchanged2[i] = this.ArrayState[i];
             }
             int[] unchanged3 = new int[9];
             for (int i = 0; i < 9; i++)
             {
-                unchanged3[i] = array[i];
+                unchanged3[i] = this.ArrayState[i];
             }
 
 
@@ -96,14 +97,14 @@ namespace NodeClass
                 
                 if (parentValue != 4)
                 {
-                    this.AddChild(new Node(new Tuple<int, string>(3, "down"), sortArray(array, 0, "down")));
+                    this.AddChild(new Node(new Tuple<int, string>(3, "down"), this.sortArray(0, "down")));
 
 
 
                 }
                 if (parentValue != 1)
                 {
-                    this.AddChild(new Node(new Tuple<int, string>(1, "right"), sortArray(unchanged, 0, "right")));
+                    this.AddChild(new Node(new Tuple<int, string>(1, "right"), this.sortArray(0, "right")));
 
                 }
             }
@@ -111,17 +112,17 @@ namespace NodeClass
             {
                 if (parentValue != 0)
                 {
-                    this.AddChild(new Node(new Tuple<int, string>(0, "left"), sortArray(array, 1, "left")));
+                    this.AddChild(new Node(new Tuple<int, string>(0, "left"), this.sortArray(1, "left")));
 
                 }
                 if (parentValue != 2)
                 {
-                    this.AddChild(new Node(new Tuple<int, string>(2, "right"), sortArray(unchanged, 1, "right")));
+                    this.AddChild(new Node(new Tuple<int, string>(2, "right"), this.sortArray(1, "right")));
 
                 }
                 if (parentValue != 4)
                 {
-                    this.AddChild(new Node(new Tuple<int, string>(4, "down"), sortArray(unchanged2, 1, "down")));
+                    this.AddChild(new Node(new Tuple<int, string>(4, "down"), this.sortArray(1, "down")));
 
                 }
             }
@@ -129,12 +130,12 @@ namespace NodeClass
             {
                 if (parentValue != 1)
                 {
-                    this.AddChild(new Node(new Tuple<int, string>(1, "left"), sortArray(array, 2, "left")));
+                    this.AddChild(new Node(new Tuple<int, string>(1, "left"), this.sortArray(2, "left")));
 
                 }
                 if (parentValue != 5)
                 {
-                    this.AddChild(new Node(new Tuple<int, string>(5, "down"), sortArray(unchanged, 2, "down")));
+                    this.AddChild(new Node(new Tuple<int, string>(5, "down"), this.sortArray(2, "down")));
 
                 }
             }
@@ -142,17 +143,17 @@ namespace NodeClass
             {
                 if (parentValue != 0)
                 {
-                    this.AddChild(new Node(new Tuple<int, string>(0, "up"), sortArray(array, 3, "up")));
+                    this.AddChild(new Node(new Tuple<int, string>(0, "up"), this.sortArray(3, "up")));
 
                 }
                 if (parentValue != 4)
                 {
-                    this.AddChild(new Node(new Tuple<int, string>(4, "right"), sortArray(unchanged, 3, "right")));
+                    this.AddChild(new Node(new Tuple<int, string>(4, "right"), this.sortArray(3, "right")));
 
                 }
                 if (parentValue != 6)
                 {
-                    this.AddChild(new Node(new Tuple<int, string>(6, "down"), sortArray(unchanged2, 3, "down")));
+                    this.AddChild(new Node(new Tuple<int, string>(6, "down"), this.sortArray(3, "down")));
 
                 }
             }
@@ -160,22 +161,22 @@ namespace NodeClass
             {
                 if (parentValue != 3)
                 {
-                    this.AddChild(new Node(new Tuple<int, string>(3, "left"), sortArray(array, 4, "left")));
+                    this.AddChild(new Node(new Tuple<int, string>(3, "left"), this.sortArray(4, "left")));
 
                 }
                 if (parentValue != 5)
                 {
-                    this.AddChild(new Node(new Tuple<int, string>(5, "right"), sortArray(unchanged, 4, "right")));
+                    this.AddChild(new Node(new Tuple<int, string>(5, "right"), this.sortArray(4, "right")));
 
                 }
                 if (parentValue != 7)
                 {
-                    this.AddChild(new Node(new Tuple<int, string>(7, "down"), sortArray(unchanged2, 4, "down")));
+                    this.AddChild(new Node(new Tuple<int, string>(7, "down"), this.sortArray(4, "down")));
 
                 }
                 if (parentValue != 1)
                 {
-                    this.AddChild(new Node(new Tuple<int, string>(1, "up"), sortArray(unchanged3, 4, "up")));
+                    this.AddChild(new Node(new Tuple<int, string>(1, "up"), this.sortArray(4, "up")));
 
                 }
             }
@@ -183,17 +184,17 @@ namespace NodeClass
             {
                 if (parentValue != 4)
                 {
-                    this.AddChild(new Node(new Tuple<int, string>(4, "left"), sortArray(array, 5, "left")));
+                    this.AddChild(new Node(new Tuple<int, string>(4, "left"), this.sortArray(5, "left")));
 
                 }
                 if (parentValue != 2)
                 {
-                    this.AddChild(new Node(new Tuple<int, string>(2, "up"), sortArray(unchanged, 5, "up")));
+                    this.AddChild(new Node(new Tuple<int, string>(2, "up"), this.sortArray(5, "up")));
 
                 }
                 if (parentValue != 8)
                 {
-                    this.AddChild(new Node(new Tuple<int, string>(8, "down"), sortArray(unchanged2, 5, "down")));
+                    this.AddChild(new Node(new Tuple<int, string>(8, "down"), this.sortArray(5, "down")));
 
                 }
             }
@@ -201,12 +202,12 @@ namespace NodeClass
             {
                 if (parentValue != 3)
                 {
-                    this.AddChild(new Node(new Tuple<int, string>(3, "up"), sortArray(array, 6, "up")));
+                    this.AddChild(new Node(new Tuple<int, string>(3, "up"), this.sortArray(6, "up")));
 
                 }
                 if (parentValue != 7)
                 {
-                    this.AddChild(new Node(new Tuple<int, string>(7, "right"), sortArray(unchanged, 6, "right")));
+                    this.AddChild(new Node(new Tuple<int, string>(7, "right"), this.sortArray(6, "right")));
 
                 }
             }
@@ -214,28 +215,28 @@ namespace NodeClass
             {
                 if (parentValue != 6)
                 {
-                    this.AddChild(new Node(new Tuple<int, string>(6, "left"), sortArray(array, 7, "left")));
+                    this.AddChild(new Node(new Tuple<int, string>(6, "left"), this.sortArray(7, "left")));
 
                 }
                 if (parentValue != 4)
                 {
-                    this.AddChild(new Node(new Tuple<int, string>(4, "up"), sortArray(unchanged, 7, "up")));
+                    this.AddChild(new Node(new Tuple<int, string>(4, "up"), this.sortArray(7, "up")));
                 }   
                 if (parentValue != 8)
                 {
-                    this.AddChild(new Node(new Tuple<int, string>(8, "right"), sortArray(unchanged2, 7, "right")));
+                    this.AddChild(new Node(new Tuple<int, string>(8, "right"), this.sortArray(7, "right")));
                 }
             }
             else if (value == 8)
             {
                 if (parentValue != 5)
                 {
-                    this.AddChild(new Node(new Tuple<int, string>(5, "up"), sortArray(array, 8, "up")));
+                    this.AddChild(new Node(new Tuple<int, string>(5, "up"), this.sortArray(8, "up")));
 
                 }
                 if (parentValue != 7)
                 {
-                    this.AddChild(new Node(new Tuple<int, string>(7, "left"), sortArray(unchanged2, 8, "left")));
+                    this.AddChild(new Node(new Tuple<int, string>(7, "left"), this.sortArray(8, "left")));
 
                 }
             }
@@ -272,7 +273,7 @@ namespace NodeClass
 
             Node nextNode = nodeQueue.Peek();
             nodeQueue.Dequeue();
-            FillTreeValues(nextNode, nextNode.ArrayState, nodeQueue, result);
+            nextNode.FillTreeValues(nodeQueue, result);
 
 
 
@@ -280,5 +281,193 @@ namespace NodeClass
 
         }
 
+        public void swap(int[] arr, int i, int j)
+        {
+            int temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+        }
+
+
+        public int[] sortArray(int num, String direction)
+        {
+            int index = -1;
+            int[] tempArr = this.ArrayState.ToArray();
+
+        switch (num)
+            {
+                case 0:
+                    if (direction.Equals("right"))
+                    {
+                        index = 1;
+                        swap(tempArr, 0, index);
+                        return tempArr;
+
+                    }
+                    else if (direction.Equals("down"))
+                    {
+                        index = 3;
+                        swap(tempArr, 0, index);
+                        return tempArr;
+                    }
+                    break;
+                case 1:
+                    if (direction.Equals("left"))
+                    {
+                        index = 0;
+                        swap(tempArr, 1, index);
+                        return tempArr;
+                    }
+                    else if (direction.Equals("right"))
+                    {
+                        index = 2;
+                        swap(tempArr, 1, index);
+                        return tempArr;
+                    }
+                    else if (direction.Equals("down"))
+                    {
+                        index = 4;
+                        swap(tempArr, 1, index);
+                        return tempArr;
+                    }
+                    break;
+                case 2:
+                    if (direction.Equals("left"))
+                    {
+                        index = 1;
+                        swap(tempArr, 2, index);
+                        return tempArr;
+                    }
+                    else if (direction.Equals("down"))
+                    {
+                        index = 5;
+                        swap(tempArr, 2, index);
+                        return tempArr;
+                    }
+                    break;
+                case 3:
+                    if (direction.Equals("right"))
+                    {
+                        index = 4;
+                        swap(tempArr, 3, index);
+                        return tempArr;
+                    }
+                    else if (direction.Equals("up"))
+                    {
+                        index = 0;
+                        swap(tempArr, 3, index);
+                        return tempArr;
+                    }
+                    else if (direction.Equals("down"))
+                    {
+                        index = 6;
+                        swap(tempArr, 3, index);
+                        return tempArr;
+                    }
+                    break;
+                case 4:
+                    if (direction.Equals("right"))
+                    {
+                        index = 5;
+                        swap(tempArr, 4, index);
+                        return tempArr;
+                    }
+                    else if (direction.Equals("up"))
+                    {
+                        index = 1;
+                        swap(tempArr, 4, index);
+                        return tempArr;
+                    }
+                    else if (direction.Equals("left"))
+                    {
+                        index = 3;
+                        swap(tempArr, 4, index);
+                        return tempArr;
+                    }
+                    else if (direction.Equals("down"))
+                    {
+                        index = 7;
+                        swap(tempArr, 4, index);
+                        return tempArr;
+                    }
+                    break;
+                case 5:
+                    if (direction.Equals("up"))
+                    {
+                        index = 2;
+                        swap(tempArr, 5, index);
+                        return tempArr;
+                    }
+                    else if (direction.Equals("left"))
+                    {
+                        index = 4;
+                        swap(tempArr, 5, index);
+                        return tempArr;
+                    }
+                    else if (direction.Equals("down"))
+                    {
+                        index = 8;
+                        swap(tempArr, 5, index);
+                        return tempArr;
+                    }
+                    break;
+                case 6:
+                    if (direction.Equals("up"))
+                    {
+                        index = 3;
+                        swap(tempArr, 6, index);
+                        return tempArr;
+                    }
+                    else if (direction.Equals("right"))
+                    {
+                        index = 7;
+                        swap(tempArr, 6, index);
+                        return tempArr;
+                    }
+                    break;
+                case 7:
+                    if (direction.Equals("up"))
+                    {
+                        index = 4;
+                        swap(tempArr, 7, index);
+                        return tempArr;
+                    }
+                    else if (direction.Equals("left"))
+                    {
+                        index = 6;
+                        swap(tempArr, 7, index);
+                        return tempArr;
+                    }
+                    else if (direction.Equals("right"))
+                    {
+                        index = 8;
+                        swap(tempArr, 7, index);
+                        return tempArr;
+                    }
+                    break;
+                case 8:
+                    if (direction.Equals("up"))
+                    {
+                        index = 5;
+                        swap(tempArr, 8, index);
+                        return tempArr;
+                    }
+                    else if (direction.Equals("left"))
+                    {
+                        index = 7;
+                        swap(tempArr, 8, index);
+                        return tempArr;
+                    }
+                    break;
+                default:
+                    return tempArr;
+
+
+
+
+            }
+            return tempArr;
+        }
     }
+
 }
