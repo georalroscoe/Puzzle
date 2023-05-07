@@ -67,26 +67,8 @@ namespace NodeClass
 
 
         }
-        public void FillTreeValues(Queue<Node> nodeQueue, int[] result)
+        public void FillTreeValues(List<Node> nodeList, int[] result, bool isSorted)
         {
-
-
-            int[] unchanged = new int[9];
-            for (int i = 0; i < 9; i++)
-            {
-                unchanged[i] = this.ArrayState[i];
-            }
-            int[] unchanged2 = new int[9];
-            for (int i = 0; i < 9; i++)
-            {
-                unchanged2[i] = this.ArrayState[i];
-            }
-            int[] unchanged3 = new int[9];
-            for (int i = 0; i < 9; i++)
-            {
-                unchanged3[i] = this.ArrayState[i];
-            }
-
 
 
             int value = Value.Item1;
@@ -257,7 +239,7 @@ namespace NodeClass
 
                 Console.WriteLine("sortred");
                 this.getPathway();
-
+                this.IsSorted = true;
                 return;
 
 
@@ -266,16 +248,16 @@ namespace NodeClass
 
             foreach (Node child in this.Children)
             {
-                nodeQueue.Enqueue(child);
+                nodeList.Add(child);
 
             }
 
-
+            /*
             Node nextNode = nodeQueue.Peek();
             nodeQueue.Dequeue();
             nextNode.FillTreeValues(nodeQueue, result);
-
-
+            */
+            
 
 
 
