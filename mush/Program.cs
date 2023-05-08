@@ -14,10 +14,19 @@ class Program
 {
     static void Main(string[] args)
     {
-        int[] array = { 1,8,2,5,7,0,4,3,6 };
-        GenerateTreeWithValues(array);
+        int[] array = { 8,7,6,5,4,3,2,1,0};
+        if (IsSolvable(array))
+        {
+            GenerateTreeWithValues(array);
+        }
+        else
+        {
+            Console.WriteLine("Unsolvable");
+        }
+        
         Console.WriteLine("fff");
-        /*PrintTree(root, 0);*/
+        
+        
 
     }
     static void GenerateTreeWithValues(int[] arr)
@@ -26,10 +35,9 @@ class Program
         int[] result = { 0, 1, 2, 3, 4, 5, 6, 7, 8 };
         List<Node> nodeList = new List<Node>();
         Node root = new Node(new Tuple<int, string>(IndexOfZero, ""), arr);
-        //nodeList.Add(root);
         bool isSorted = false;
         List<Node> iterationLoop = new List<Node>();
-
+        int depth = 1;
       
       root.FillTreeValues(nodeList, result, isSorted);
         while (isSorted == false)
@@ -38,13 +46,26 @@ class Program
             iterationLoop = nodeList.ToList();
             nodeList.Clear();
             isSorted = TreeValueHelper(iterationLoop,nodeList, result, isSorted);
+            depth++;
             
         }
-        
 
-          
-     
-       
+    }
+
+    static bool IsSolvable(int[] puzzle)
+    {
+        int inversions = 0;
+        for (int i = 0; i < puzzle.Length - 1; i++)
+        {
+            for (int j = i + 1; j < puzzle.Length; j++)
+            {
+                if (puzzle[i] > puzzle[j] && puzzle[i] != 0 && puzzle[j] != 0)
+                {
+                    inversions++;
+                }
+            }
+        }
+        return inversions % 2 == 0;
     }
     static bool TreeValueHelper(List<Node> iterationLoop, List<Node> originallist, int[] result, bool isSorted)
     {
@@ -52,7 +73,7 @@ class Program
         {
             
             
-                node.FillTreeValues(originallist, result, isSorted);
+            node.FillTreeValues(originallist, result, isSorted);
             if (node.IsSorted)
             {
                 return true;

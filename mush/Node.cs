@@ -251,6 +251,7 @@ namespace NodeClass
                 nodeList.Add(child);
 
             }
+           
 
             /*
             Node nextNode = nodeQueue.Peek();
