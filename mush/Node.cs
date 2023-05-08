@@ -67,7 +67,7 @@ namespace NodeClass
 
 
         }
-        public void FillTreeValues(List<Node> nodeList, int[] result, bool isSorted)
+        public void FillTreeValues(List<Node> nodeList, int[] result)
         {
 
 
@@ -77,7 +77,7 @@ namespace NodeClass
             if (value == 0)
             {
                 
-                if (parentValue != 4)
+                if (parentValue != 3)
                 {
                     this.AddChild(new Node(new Tuple<int, string>(3, "down"), this.sortArray(0, "down")));
 
@@ -224,20 +224,12 @@ namespace NodeClass
             }
 
 
-
-
-
-
-
-
-
-
             bool istrue = Enumerable.SequenceEqual(this.ArrayState, result);
 
             if (istrue)
             {
 
-                Console.WriteLine("sortred");
+                Console.WriteLine("Solved!");
                 this.getPathway();
                 this.IsSorted = true;
                 return;
@@ -252,15 +244,6 @@ namespace NodeClass
 
             }
            
-
-            /*
-            Node nextNode = nodeQueue.Peek();
-            nodeQueue.Dequeue();
-            nextNode.FillTreeValues(nodeQueue, result);
-            */
-            
-
-
 
         }
 

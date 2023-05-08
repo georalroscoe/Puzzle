@@ -14,7 +14,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        int[] array = { 8,7,6,5,4,3,2,1,0};
+        int[] array = { 1,5,3,4,2,0,7,6, 8};
         if (IsSolvable(array))
         {
             GenerateTreeWithValues(array);
@@ -23,10 +23,7 @@ class Program
         {
             Console.WriteLine("Unsolvable");
         }
-        
-        Console.WriteLine("fff");
-        
-        
+
 
     }
     static void GenerateTreeWithValues(int[] arr)
@@ -35,17 +32,17 @@ class Program
         int[] result = { 0, 1, 2, 3, 4, 5, 6, 7, 8 };
         List<Node> nodeList = new List<Node>();
         Node root = new Node(new Tuple<int, string>(IndexOfZero, ""), arr);
-        bool isSorted = false;
         List<Node> iterationLoop = new List<Node>();
         int depth = 1;
+        bool isSorted = false;
       
-      root.FillTreeValues(nodeList, result, isSorted);
+      root.FillTreeValues(nodeList, result);
         while (isSorted == false)
         {
             iterationLoop.Clear();
             iterationLoop = nodeList.ToList();
             nodeList.Clear();
-            isSorted = TreeValueHelper(iterationLoop,nodeList, result, isSorted);
+            isSorted = TreeValueHelper(iterationLoop,nodeList, result);
             depth++;
             
         }
@@ -67,13 +64,13 @@ class Program
         }
         return inversions % 2 == 0;
     }
-    static bool TreeValueHelper(List<Node> iterationLoop, List<Node> originallist, int[] result, bool isSorted)
+    static bool TreeValueHelper(List<Node> iterationLoop, List<Node> originallist, int[] result)
     {
         foreach(Node node in iterationLoop)
         {
             
             
-            node.FillTreeValues(originallist, result, isSorted);
+            node.FillTreeValues(originallist, result);
             if (node.IsSorted)
             {
                 return true;
@@ -87,6 +84,14 @@ class Program
     
 
 }
+
+
+
+//vednding machine where you can put money and stock in and give change. items of stock and quantity and price. cust can put coins in and choose
+//something and as long as they have enohg money then theyll get it and if theres toomuch money theyll get change. change has to be in the correct denominations
+
+//think about how it looks in the database 
+// think about object relationships, kind of like an ef diagram
 
 
 
