@@ -87,14 +87,6 @@ class Program
 
 
 
-//vednding machine where you can put money and stock in and give change. items of stock and quantity and price. cust can put coins in and choose
-//something and as long as they have enohg money then theyll get it and if theres toomuch money theyll get change. change has to be in the correct denominations
-
-//think about how it looks in the database 
-// think about object relationships, kind of like an ef diagram
-
-
-
 
 
 
